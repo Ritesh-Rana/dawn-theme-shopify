@@ -9,9 +9,9 @@
     class="flex">
 </div>
 <h1>
-{% for block in section.blocks %}
+  {% for block in section.blocks %}
     <img src="{{block.settings.usr_img | img_url: 'master'}}" />
-{% endfor %}
+  {% endfor %}
 </h1>
 <style>
   .flex {
@@ -31,11 +31,10 @@
     "name": "Profile 1",
     "settings": [
       {
-            "type": "image_picker",
-            "id": "usr_img",
-            "label": "img block"
-      },
-      {
+        "type": "image_picker",
+        "id": "usr_img",
+        "label": "img block"
+      }, {
         "type": "text",
         "id": "usr_name",
         "label": "user Name"
@@ -45,7 +44,7 @@
         "label": "user Bio"
       }
     ],
-    "blocks":[
+    "blocks": [
       {
         "type": "image",
         "name": "user Image",
@@ -59,10 +58,10 @@
       }
     ],
     "presets": [
-        {
-            "name": "Slideshow",
-            "category":"User Profile"
-        }
+      {
+        "name": "User Profile",
+        "category": "User Profile"
+      }
     ]
   }
 {% endschema %}
