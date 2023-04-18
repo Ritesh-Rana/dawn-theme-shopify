@@ -8,7 +8,7 @@
     alt="cake"
     class="flex">
 </div>
-<span class="range-slider"></span>
+<div class="range-slider">slider</div>
 <h1>
   {% for block in section.blocks %}
     <img src="{{block.settings.usr_img | img_url: 'master'}}" />
@@ -16,6 +16,7 @@
 </h1>
 <style>
   .flex {
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +28,10 @@
     padding: 20px;
   }
   .range-slider{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: aqua;
     height: 20px;
     width: {{ section.settings.range }}px;
