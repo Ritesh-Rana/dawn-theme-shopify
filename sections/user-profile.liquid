@@ -1,0 +1,62 @@
+<div class="flex">
+  <div>
+    <h1>{{ section.settings.usr_name }}</h1>
+    <p>{{ section.settings.usr_bio }}</p>
+  </div>
+  <img
+    src="{{ section.settings.usr_img | img_url: 'medium' }}"
+    alt="cake"
+    class="flex">
+</div>
+<h1>
+{% for block in section.blocks %}
+    <img src="{{block.settings.usr_img | img_url: 'master'}}" />
+{% endfor %}
+</h1>
+<style>
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+    margin: 20px;
+    background-color: rgba(235, 210, 52);
+    border: 2px;
+    border-radius: 150px;
+    padding: 20px;
+  }
+</style>
+{% schema %}
+  {
+    "name": "Profile 1",
+    "settings": [
+      {
+            "type": "image_picker",
+            "id": "usr_img",
+            "label": "img block"
+      },
+      {
+        "type": "text",
+        "id": "usr_name",
+        "label": "user Name"
+      }, {
+        "type": "richtext",
+        "id": "usr_bio",
+        "label": "user Bio"
+      }
+    ],
+    "blocks":[
+      {
+        "type": "image",
+        "name": "user Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "usr_img",
+            "label": "img block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
