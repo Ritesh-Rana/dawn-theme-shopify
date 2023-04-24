@@ -97,15 +97,15 @@
               </svg>
             </div>
           </button>
-          <button class="ajax-add-to-cart product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}" id="ajax-add-to-cart">
-            Add to cart Ajax
-          </button>
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
         </div>
       {%- endform -%}
     </product-form>
+  <button class="ajax-add-to-cart product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}" id="ajax-add-to-cart">
+    Add to cart Ajax
+  </button>
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">
