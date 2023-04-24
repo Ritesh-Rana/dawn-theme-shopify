@@ -103,9 +103,37 @@
         </div>
       {%- endform -%}
     </product-form>
+  
+  
   <button class="ajax-add-to-cart product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}" id="ajax-add-to-cart">
     Add to cart Ajax
   </button>
+  <script>
+    $('#ajax-add-to-cart').click(function() {
+      var ID = document.getElementById("id").attr("value").val();
+      addItemToCart(ID, 1);
+    });
+  
+    function addItemToCart(variant_id, qty) {
+      data = {
+        "id": variant_id,
+        "quantity": qty
+      }
+  
+      jQuery.ajax({
+        type: 'POST',
+        url: '/cart/add',
+        data: data,
+        dataType: 'json',
+        success: function() {
+          event.preventDefault();
+        }
+      });
+      event.preventDefault();
+    }
+  </script>
+
+  
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">
