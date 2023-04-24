@@ -22,7 +22,8 @@
       "settings": {
         "usr_img": "shopify:\/\/shop_images\/0BE61EED-8B90-48DA-8F92-1CA1601983C5.jpg",
         "usr_name": "Ritesh Rana",
-        "usr_bio": "<p>Lorem Ipsum .....<\/p>"
+        "usr_bio": "<p>Lorem Ipsum .....<\/p>",
+        "range": 200
       }
     }
   },
