@@ -105,33 +105,33 @@
     </product-form>
   
   
-  <button class="ajax-add-to-cart product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}" id="ajax-add-to-cart">
+  <button class="ajax-add-to-cart product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}" id="ajaxaddtocart">
     Add to cart Ajax
   </button>
   <script>
-    $('#ajax-add-to-cart').click(function() {
-      var ID = document.getElementById("id").attr("value").val();
-      addItemToCart(ID, 1);
-    });
-  
-    function addItemToCart(variant_id, qty) {
-      data = {
-        "id": variant_id,
-        "quantity": qty
-      }
-  
-      jQuery.ajax({
-        type: 'POST',
-        url: '/cart/add',
-        data: data,
-        dataType: 'json',
-        success: function() {
-          event.preventDefault();
-        }
-      });
-      event.preventDefault();
+  $('#ajaxaddtocart').click(function() {
+    var ID = $('#id').attr("value");
+    addItemToCart(ID, 1); // paste your id product number
+  });
+
+  function addItemToCart(variant_id, qty) {
+    data = {
+      "id": variant_id,
+      "quantity": qty
     }
-  </script>
+
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add',
+      data: data,
+      dataType: 'json',
+      success: function() {
+        event.preventDefault();
+      }
+    });
+    event.preventDefault();
+  }
+</script>
 
   
   {%- else -%}
