@@ -1,0 +1,125 @@
+<div class="box">
+  <h2 id="h2">Subscribe to our Newsletter</h2>
+  <p>Our weekly newsletter provides you with the latest and most important happenings in the industry.</p>
+
+  <div class="form-control">
+    <form action="" id="newsletter">
+      <input
+        type="text"
+        class="input"
+        placeholder="Enter Full name" />
+      <input
+        type="text"
+        class="input"
+        placeholder="Enter Phone Number" />
+      <input
+        type="text"
+        class="input"
+        placeholder="Enter e-mail adress" />
+      <button class="btn" type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+<p id="msg" style="display: none;"></p>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Muli:300, 700 &display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #e9bc32;
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .box {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    max-width: 500px;
+  }
+
+  .box h2 {
+    margin: 10px 0 0;
+  }
+
+  .box p {
+    color: #312940;
+    margin: 10px;
+  }
+
+  .box img {
+    max-width: 100%;
+    width: 400px;
+  }
+
+  .form-control {
+    position: relative;
+    margin: 30px 0 20px;
+  }
+
+  .input {
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    display: block;
+    font-family: 'Muli', sans-serif;
+    font-size: 14px;
+    height: 42px;
+    padding: 12px 25px;
+    width: 100%;
+    margin: 15px;
+  }
+
+  .btn {
+    background-color: #312940;
+    border: 0;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 14px;
+    height: 42px;
+    padding: 12px 25px;
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    display: block;
+    font-family: 'Muli', sans-serif;
+    font-size: 14px;
+    height: 42px;
+    width: 100%;
+    margin: 15px;
+  }
+
+  .input:focus,
+  .btn:focus {
+    outline: 0;
+  }
+</style>
+<script>
+
+  window.onload = function() {
+    var form = document.querySelector("#newsletter");
+    form.onsubmit = submitted.bind(form);
+  }
+
+  function submitted(event) {
+    event.preventDefault();
+    var msg = document.querySelector("#newsletter");
+    document.querySelector("#h2").style.display = "none";
+    msg.style.display = "block";
+    msg.style.color = "green";
+    msg.innerHTML = "Bonga ! you have subcribed to our form";
+    setTimeout(function() {
+      msg.style.display = "none";
+    }, 5000)
+
+  }
+</script>
