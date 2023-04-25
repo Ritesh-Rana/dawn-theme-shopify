@@ -385,3 +385,22 @@
     </div>
   </div>
 {%- endif -%}
+<script>
+  $(".ajax-add-to-cart").click(function(){
+    variant_id = $(this).attr("id");
+    data = {
+      "id": variant_id,
+      "quantity": 1
+    }
+
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add',
+      data: data,
+      dataType: 'json',
+      success: function() {
+        $("#cart-notification").addClass("active");
+      }
+    })
+  })
+</script>
