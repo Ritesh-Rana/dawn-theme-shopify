@@ -23,7 +23,7 @@
         assign show_dynamic_checkout = true
       endif
     -%}
-
+{% assign price =  product.price | money_without_currency %}
     <span>Price : {{ price }}</span>
     
     {% if price != 0.00 %}
