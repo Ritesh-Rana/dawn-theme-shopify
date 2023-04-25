@@ -1,0 +1,54 @@
+<script>
+  {% assign free_gift_over_price_30 = 100 %}
+  {% assign variant_id = '44979149275425' %}
+  $('input[type=number]').change(function() {
+    var updateproductline = $(this).attr("data-index"),
+      updateproductqty = $(this).val();
+    fetch('/cart/change.js', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {quantity: updateproductqty, line: updateproductline}
+      )
+    }).then(() => {
+        var carttotal = "{{ cart.total_price | money_without_currency }}";
+        var carttotalint= carttotal.replace(',','');
+        var carttotalint= Number(carttotalint);
+      if ( carttotalint >= 100) {
+        var params = {
+          type: 'POST',
+          url: '/cart/update.js',
+          data: {
+            updates: {
+              44979149275425: 1
+            }
+          },
+          dataType: 'json',
+          success: function(stuff) {
+            alert("added")
+            window.location.href = '/cart';
+          }
+        };
+        $.ajax(params);
+      } else {
+        var params = {
+          type: 'POST',
+          url: '/cart/update.js',
+          data: {
+            updates: {
+              44979149275425: 0
+            }
+          },
+          dataType: 'json',
+          success: function(stuff) {
+            alert("removed")
+            window.location.href = '/cart';
+          }
+        };
+        $.ajax(params);
+      }
+    });
+  });
+</script>
