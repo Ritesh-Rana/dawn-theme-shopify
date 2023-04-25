@@ -17,20 +17,22 @@
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
       if ( carttotalint >= 100) {
-        fetch('/cart/update.js', {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(
-            {
-                  44979149275425: 1
+        var params = {
+          type: 'POST',
+          url: '/cart/update.js',
+          data: {
+            updates: {
+              44979149275425: 1
             }
-          )
-        }).then(()=>{
-          window.location.href = '/cart';
-        })
-    } else {
+          },
+          dataType: 'json',
+          success: function(stuff) {
+            alert("added")
+            window.location.href = '/cart';
+          }
+        };
+        $.ajax(params);
+      } else {
         var params = {
           type: 'POST',
           url: '/cart/update.js',
