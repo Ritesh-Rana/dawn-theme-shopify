@@ -231,6 +231,8 @@
                     <span>({{- 'products.product.quantity.in_cart_html' | t: quantity: cart_qty -}})</span>
                   </span>
                 </label>
+                
+                {% assign price = {{ product.price | money_without_currency }} %}
                 {% if price != 0.00 %}
                 <quantity-input class="quantity">
                   <button class="quantity__button no-js-hidden" name="minus" type="button">
