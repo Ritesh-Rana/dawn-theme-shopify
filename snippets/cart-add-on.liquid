@@ -16,7 +16,7 @@
       window.location.href = '/cart';
     });
   });
-  $(document).ready(function() => {
+  $(document).ready(function() {
         var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
