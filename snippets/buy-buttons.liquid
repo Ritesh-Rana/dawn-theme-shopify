@@ -104,7 +104,7 @@
       {%- endform -%}
     </product-form>
   
-  
+  <span style="display: none; color:green" id="smsg">Product added to cart <a href="/cart">view in cart</a></span>
   <button class="ajax-add-to-cart product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}" id="ajaxaddtocart">
     Add to cart Ajax
   </button>
@@ -126,7 +126,7 @@
       data: data,
       dataType: 'json',
       success: function() {
-        alert("Added by ajax");
+        $("smsg").style.display="block";
       }
     });
   }
