@@ -60,6 +60,7 @@
         }
       });
       $(document).ajaxComplete(function() {
+        alert("ajax completed")
         $.getJSON('/cart.js', function(cart) {
         $('.cart-item-count').text(cart.item_count);
         $('.cart-total').text(Shopify.formatMoney(cart.total_price));
