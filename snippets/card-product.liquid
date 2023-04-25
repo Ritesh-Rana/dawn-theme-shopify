@@ -133,6 +133,9 @@
               </span>
             {%- endif -%}
           </div>
+          <button class="ajax-add-to-cart product-form__submit button button--full-width button--secondary">
+                Add To cart Ajax
+          </button>
         </div>
       </div>
       <div class="card__content">
@@ -143,9 +146,6 @@
               id="title-{{ section_id }}-{{ card_product.id }}"
             {% endif %}
           >
-          <button class="ajax-add-to-cart product-form__submit button button--full-width button--secondary">
-                Add To cart Ajax
-          </button>
             <a
               href="{{ card_product.url }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
@@ -333,6 +333,9 @@
             </span>
           {%- endif -%}
         </div>
+        <button class="ajax-add-to-cart product-form__submit button button--full-width button--secondary">
+                Add To cart Ajax
+          </button>
       </div>
     </div>
   </div>
@@ -371,9 +374,6 @@
               {{ 'onboarding.product_title' | t }}
             </a>
           </h3>
-          <button class="ajax-add-to-cart product-form__submit button button--full-width button--secondary">
-                Add To cart Ajax
-          </button>
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
