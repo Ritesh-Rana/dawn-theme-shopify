@@ -23,7 +23,10 @@
         assign show_dynamic_checkout = true
       endif
     -%}
+
+    {% assign price = {{ product.price | money_without_currency }} %}
     {% if price != 0.00 %}
+    <span>Price : {{ price }}</span>
     <product-form class="product-form" data-hide-errors="{{ gift_card_recipient_feature_active }}">
       <div class="product-form__error-message-wrapper" role="alert" hidden>
         <svg
