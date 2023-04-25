@@ -169,9 +169,9 @@
               {%- endif -%}
               {% if product.metafields %}
                 <h1>Product Attributes </h1>
-                <span>Origin : {{ product.metafields['custom']['country_origin'] }}</span>
-                <span>Weight: {{ product.metafields['custom']['weight_of_the_product'] }} </span>
-                <span>Origin of variants : {{ product.metafields['custom']['variant_origin'] }} </span>
+                <span>Origin : {{ product.metafields['custom']['country_origin'] }}</span><br>
+                <span>Weight: {{ product.metafields['custom']['weight_of_the_product'] }} </span><br>
+                <span>Origin of variants : {{ product.metafields['custom']['variant_origin'] }} </span><br>
               {% endif %}
             {%- when 'sku' -%}
               <p
