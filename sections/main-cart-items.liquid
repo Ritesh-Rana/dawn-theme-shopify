@@ -17,6 +17,13 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  .shipping-savings-message {
+    background-color: #f9ffe6;
+    border: 3px solid green;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 25px;
+  }
 {%- endstyle -%}
 
 {%- unless settings.cart_type == 'drawer' -%}
@@ -42,7 +49,17 @@
       </p>
     {%- endif -%}
   </div>
-
+  {% if cart.item_count > 0 %}
+  <p class="shipping-savings-message">
+    {% if shipping_value_left > 0 %}
+      You are {{ shipping_value_left | money }} away from free shipping!
+      <a href="/collections/all">Continue shopping</a>
+      to add more products to your cart and receive free shipping for orders over $75.
+    {% else %}
+      You've got free shipping!
+    {% endif %}
+  </p>
+{% endif %}
   <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
     <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
       <div class="js-contents">
