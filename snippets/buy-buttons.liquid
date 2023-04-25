@@ -23,7 +23,7 @@
         assign show_dynamic_checkout = true
       endif
     -%}
-
+    {% if price != 0.00 %}
     <product-form class="product-form" data-hide-errors="{{ gift_card_recipient_feature_active }}">
       <div class="product-form__error-message-wrapper" role="alert" hidden>
         <svg
@@ -131,7 +131,7 @@
     });
   }
 </script>
-
+{% endif %}
   
   {%- else -%}
     <div class="product-form">
