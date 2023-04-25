@@ -13,43 +13,43 @@
         {quantity: updateproductqty, line: updateproductline}
       )
     }).then(() => {
+      window.location.href = '/cart';
+    })
+    .then(() => {
         var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
         
-      if ( carttotalint >= 100) {
-        fetch('/cart/update.js', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(
-        {
-            updates: {
-              44979149275425: 1
-            }
+        if ( carttotalint >= 100) {
+            fetch('/cart/update.js', {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    updates: {
+                      44979149275425: 1
+                    }
+                })
+            }).then(()=>{
+                window.location.href = '/cart';
+              })
+        } 
+        else {
+          fetch('/cart/update.js', {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  updates: {
+                    44979149275425: 0
+                  }
+              })
+          }).then(()=>{
+              window.location.href = '/cart';
+            })
         }
-      )
-    }).then(()=>{
-      window.location.href = '/cart';
-    })
-      } else {
-        var params = {
-          type: 'POST',
-          url: '/cart/update.js',
-          data: {
-            updates: {
-              44979149275425: 0
-            }
-          },
-          dataType: 'json',
-          success: function(stuff) {
-            alert("removed")
-            window.location.href = '/cart';
-          }
-        };
-        $.ajax(params);
-      }
-    });
+      });
   });
 </script>
