@@ -12,7 +12,10 @@
       body: JSON.stringify(
         {quantity: updateproductqty, line: updateproductline}
       )
-    }).then(() => {
+    }).then(()=>{
+      window.location.href = '/cart';
+    });
+    document.ready(() => {
         var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
