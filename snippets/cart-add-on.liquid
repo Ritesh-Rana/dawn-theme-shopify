@@ -3,7 +3,6 @@
   {% for item in cart.items %}
     {% if item.variant.id == 44979149275425 %}
         {% assign proqty = item.quantity %}
-        alert( {{ proqty }} );
         {% break %}
     {% endif %}
   {% endfor %}
@@ -29,7 +28,6 @@
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
         var proqty = {{ proqty }}
-        alert( {{proqty }} );
         if ( carttotalint >= 100 && proqty == 0) {
             fetch('/cart/update.js', {
                 method: "POST",
