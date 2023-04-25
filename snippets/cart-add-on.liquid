@@ -13,9 +13,6 @@
         {quantity: updateproductqty, line: updateproductline}
       )
     }).then(() => {
-      window.location.href = '/cart';
-    })
-    .then(() => {
         var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
