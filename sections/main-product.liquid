@@ -167,6 +167,12 @@
                   {{ product.description }}
                 </div>
               {%- endif -%}
+              {% if product.metafields %}
+                <h1>Product Attributes </h1>
+                <span>Origin : {{ product.metafields['custom']['country_origin'] }}</span>
+                <span>Weight: {{ product.metafields['custom']['weight_of_the_product'] }} </span>
+                <span>Origin of variants : {{ product.metafields['custom']['variant_origin'] }} </span>
+              {% endif %}
             {%- when 'sku' -%}
               <p
                 class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
