@@ -15,11 +15,11 @@
     }).then(()=>{
       window.location.href = '/cart';
     });
-    document.ready(() => {
+    $(document).ready(function() => {
         var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
-        
+        alert(carttotalint);
         if ( carttotalint >= 100) {
             fetch('/cart/update.js', {
                 method: "POST",
