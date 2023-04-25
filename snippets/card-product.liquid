@@ -331,7 +331,9 @@
           {%- endif -%}
         </div>
       </div>
-        <button class="ajax-add-to-cart product-form__submit button button--full-width button--secondary">
+        <button class="ajax-add-to-cart product-form__submit button button--full-width button--secondary" 
+                id="{{ card_product.selected_or_first_available_variant.id }}"
+        >
                 Add To cart Ajax
           </button>
     </div>
