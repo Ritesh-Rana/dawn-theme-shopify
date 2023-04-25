@@ -49,6 +49,9 @@
       </p>
     {%- endif -%}
   </div>
+  {% assign shipping_value = 7500 %}
+  {% assign cart_total = cart.total_price %}
+  {% assign shipping_value_left = shipping_value | minus: cart_total %}
   {% if cart.item_count > 0 %}
   <p class="shipping-savings-message">
     {% if shipping_value_left > 0 %}
