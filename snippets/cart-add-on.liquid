@@ -25,10 +25,6 @@
   });
   $(document).ready(function() {
 
-        $("cart-remove-button").click(function() {
-            
-        });
-
         var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
@@ -64,4 +60,13 @@
             })
         }
       });
+
+    $("cart-remove-button").click(function() {
+      if(carttotalint < 100 && proqty >= 1){
+        fetch('cart/change?id=44979149275425&quantity=0');
+        fetch($(this).find('a').attr('href'));
+      }
+      else
+        fetch($(this).find('a').attr('href'));
+    });
 </script>
