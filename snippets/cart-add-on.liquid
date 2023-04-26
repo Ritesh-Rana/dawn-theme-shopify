@@ -1,4 +1,4 @@
-<script> 
+<script>
 {% assign proqty = 0 %}
   {% for item in cart.items %}
     {% if item.variant.id == 44979149275425 %}
@@ -20,7 +20,7 @@
         {quantity: updateproductqty, line: updateproductline}
       )
     }).then(()=>{
-      //window.location.href = '/cart';
+      window.location.href = '/cart';
     });
   });
   $(document).ready(function() {
@@ -59,19 +59,5 @@
               window.location.href = '/cart';
             })
         }
-      });
-      var allelement = document.getElementsByTagName("cart-remove-button");
-      Array.from(allelement).forEach(element => {
-        element.addEventListener("click", function() {
-          var carttotal = "{{ cart.total_price | money_without_currency }}";
-          var carttotalint = carttotal.replace(',', '');
-          carttotalint = Number(carttotalint);
-          alert(carttotalint);
-          if (carttotalint < 100) {
-            fetch('cart/change?id=44979149275425&quantity=0');
-            fetch($(this).find('a').attr('href'));
-            alert("if");
-          }
-        });
       });  
 </script>
