@@ -31,7 +31,7 @@ class CartItems extends HTMLElement {
       if (event.source === 'cart-items') {
         return;
       }
-      this.onCartUpdate();
+      // this.onCartUpdate();
     });
   }
 
