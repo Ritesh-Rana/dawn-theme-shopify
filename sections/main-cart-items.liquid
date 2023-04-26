@@ -278,9 +278,11 @@
                       {% endif %}
                       <cart-remove-button
                         {% if item.price == 0.00 %}
-                          hidden
+                          id="{{ item.variant.id }}"
+                          style="display: none;"
+                        {% else %}
+                          id="Remove-{{ item.index | plus: 1 }}"
                         {% endif %}
-                        id="Remove-{{ item.index | plus: 1 }}"
                         data-index="{{ item.index | plus: 1 }}"
                       >
                         <a
