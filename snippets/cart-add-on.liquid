@@ -9,11 +9,7 @@
   {% assign free_gift_over_price_30 = 100 %}
   {% assign variant_id = '44979149275425' %}
   $('input[type=number]').change(function() {
-    
-  });
-  $(document).ready(function() {
-
-        var carttotal = "{{ cart.total_price | money_without_currency }}";
+    var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         carttotalint= Number(carttotalint);
         var proqty = {{ proqty }}
@@ -46,5 +42,7 @@
             "{% render 'add-free-product' %}"
           })
         }
-      });  
+    });
+
+         
 </script>
