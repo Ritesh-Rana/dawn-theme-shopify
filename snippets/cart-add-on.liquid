@@ -23,7 +23,6 @@
       //window.location.href = '/cart';
     });
   });
-  var carttotalint;
   $(document).ready(function() {
 
         var carttotal = "{{ cart.total_price | money_without_currency }}";
@@ -63,6 +62,9 @@
       });
 
     $("cart-remove-button").click(function() {
+      var carttotal = "{{ cart.total_price | money_without_currency }}";
+        var carttotalint= carttotal.replace(',','');
+        carttotalint= Number(carttotalint);
       alert(carttotalint);
       if( carttotalint < 100 ){
         fetch('cart/change?id=44979149275425&quantity=0');
