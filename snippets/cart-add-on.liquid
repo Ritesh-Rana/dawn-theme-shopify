@@ -29,7 +29,7 @@
       console.log("carttotalint : "+carttotalint);
       console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
-            fetch('/cart/add', {
+            fetch('/cart/change', {
                 method: "POST",
                 headers: {
                   'Content-Type': 'application/json'
