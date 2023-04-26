@@ -24,7 +24,7 @@
                       "quantity": 1
                 })
             }).then(()=>{
-              "{% render 'add-free-product' %}"
+                alert(carttotalint);
             })
         } 
         else if( carttotalint < 100 && proqty >= 1 ) {
@@ -39,7 +39,7 @@
                   }
               })
           }).then(()=>{
-            "{% render 'add-free-product' %}"
+            alert(carttotalint);
           })
         }
     });
