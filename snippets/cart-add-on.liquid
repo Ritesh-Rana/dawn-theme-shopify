@@ -65,9 +65,12 @@
     $("cart-remove-button").click(function() {
       if( carttotalint < 100 && proqty >= 1){
         fetch('cart/change?id=44979149275425&quantity=0');
-        fetch($(this).find('a').attr('href'));
+        fetch("'"+$(this).find('a').attr('href')+"'");
+        alert("if")
       }
-      else
-        fetch($(this).find('a').attr('href'));
+      else{
+        fetch("'"+$(this).find('a').attr('href')"'");
+        alert("else");
+      }
     });
 </script>
