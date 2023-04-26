@@ -19,9 +19,7 @@
       body: JSON.stringify(
         {quantity: updateproductqty, line: updateproductline}
       )
-    }).then(()=>{
-      window.location.href = '/cart';
-    });
+    })
   });
   $(document).ready(function() {
 
@@ -30,18 +28,17 @@
         carttotalint= Number(carttotalint);
         var proqty = {{ proqty }}
         if ( carttotalint >= 100 && proqty == 0) {
-            fetch('/cart/update.js', {
+            fetch('/cart/add', {
                 method: "POST",
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    updates: {
-                      44979149275425: 1
-                    }
+                      "id":44979149275425,
+                      "quantity": 1
                 })
             }).then(()=>{
-                window.location.href = '/cart';
+               
               })
         } 
         else if( carttotalint < 100 && proqty >= 1 ) {
@@ -56,7 +53,7 @@
                   }
               })
           }).then(()=>{
-              window.location.href = '/cart';
+              
             })
         }
       });  
