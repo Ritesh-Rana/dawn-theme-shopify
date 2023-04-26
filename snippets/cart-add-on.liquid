@@ -29,7 +29,7 @@
         var carttotalint= Number(carttotalint);
         var proqty = {{ proqty }}
         if ( carttotalint >= 100 && proqty == 0) {
-            fetch('/cart/update.js', {
+            fetch('/cart/change.js', {
                 method: "POST",
                 headers: {
                   'Content-Type': 'application/json'
@@ -40,11 +40,11 @@
                     }
                 })
             }).then(()=>{
-                //window.location.href = '/cart';
+                window.location.href = '/cart';
               })
         } 
         else if( carttotalint < 100 && proqty >= 1 ) {
-          fetch('/cart/update.js', {
+          fetch('/cart/change.js', {
               method: "POST",
               headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +55,7 @@
                   }
               })
           }).then(()=>{
-              //window.location.href = '/cart';
+              window.location.href = '/cart';
             })
         }
       });
