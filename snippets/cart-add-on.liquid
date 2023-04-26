@@ -24,6 +24,11 @@
     });
   });
   $(document).ready(function() {
+
+        $("cart-remove-button").click(function() {
+          $("#44979149275425").trigger( "click" );
+        });
+
         var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
         var carttotalint= Number(carttotalint);
@@ -58,8 +63,5 @@
               window.location.href = '/cart';
             })
         }
-      });
-      $("cart-remove-button").click(function() {
-          $("#44979149275425").trigger("click");
       });
 </script>
