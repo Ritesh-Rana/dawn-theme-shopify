@@ -11,6 +11,8 @@
   $('input[type=number]').change(function() {
     var updateproductline = $(this).attr("data-index"),
       updateproductqty = $(this).val();
+      console.log("updateproductline : "+updateproductline);
+      console.log("updateproductqty : "+updateproductqty);
     fetch('/cart/change.js', {
       method: "POST",
       headers: {
@@ -19,11 +21,13 @@
       body: JSON.stringify(
         {quantity: updateproductqty, line: updateproductline}
       )
-    })
+    }).then(()=>{
     var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
-        carttotalint= Number(carttotalint);
-        var proqty = {{ proqty }}
+            carttotalint= Number(carttotalint),
+            proqty = {{ proqty }};
+      console.log("carttotalint : "+carttotalint);
+      console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
             fetch('/cart/add', {
                 method: "POST",
@@ -34,8 +38,6 @@
                       "id":44979149275425,
                       "quantity": 1
                 })
-            }).then(()=>{
-                alert(carttotalint);
             })
         } 
         else if( carttotalint < 100 || proqty >= 1 ) {
@@ -49,11 +51,8 @@
                     44979149275425: 0
                   }
               })
-          }).then(()=>{
-            alert(carttotalint);
           })
         }
-    });
-
-         
+    })
+  })     
 </script>
