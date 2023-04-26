@@ -29,7 +29,7 @@
         var carttotalint= Number(carttotalint);
         var proqty = {{ proqty }}
         if ( carttotalint >= 100 && proqty == 0) {
-            fetch('/cart/change.js', {
+            fetch('/cart/update.js', {
                 method: "POST",
                 headers: {
                   'Content-Type': 'application/json'
@@ -44,7 +44,7 @@
               })
         } 
         else if( carttotalint < 100 && proqty >= 1 ) {
-          fetch('/cart/change.js', {
+          fetch('/cart/update.js', {
               method: "POST",
               headers: {
                 'Content-Type': 'application/json'
@@ -62,8 +62,7 @@
       $(document).ajaxComplete(function() {
         alert("ajax completed")
         $.getJSON('/cart.js', function(cart) {
-        $('.cart-item-count').text(cart.item_count);
-        $('.cart-total').text(Shopify.formatMoney(cart.total_price));
+          
         });
       });
 </script>
