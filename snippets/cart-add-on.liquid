@@ -21,16 +21,12 @@
       body: JSON.stringify(
         { updates : { [updateproductline] : updateproductqty } }
       )
-    }).then(()=>{
+    }).then(res=>{
     var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
             carttotalint= Number(carttotalint),
             proqty = {{ proqty }};
-      fetch('/cart',{
-        method: 'GET'
-      }).then(res=>{
         console.log(res);
-      });
       console.log("carttotalint : "+carttotalint);
       console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
