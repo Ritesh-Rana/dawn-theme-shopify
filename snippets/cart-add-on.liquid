@@ -19,7 +19,7 @@
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(
-        { updates : {updateproductline : updateproductqty } }
+        { updates : { [updateproductline] : updateproductqty } }
       )
     }).then(()=>{
     var carttotal = "{{ cart.total_price | money_without_currency }}";
