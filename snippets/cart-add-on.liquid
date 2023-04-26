@@ -29,7 +29,17 @@
       console.log("carttotalint : "+carttotalint);
       console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
-          fetch('cart/change?id=44979149275425&quantity=1');
+          fetch('/cart/update.js', {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                updates: {
+                  44979149275425: 1
+                }
+            })
+        });
         } 
         else if( carttotalint < 100 || proqty > 1 ) {
           fetch('/cart/update.js', {
