@@ -28,8 +28,8 @@
                       "quantity": 1
                 })
             }).then(()=>{
-                alert("added");
-              })
+              {% section 'main-cart-items' %}
+            })
         } 
         else if( carttotalint < 100 && proqty >= 1 ) {
           fetch('/cart/update.js', {
@@ -43,8 +43,8 @@
                   }
               })
           }).then(()=>{
-              alert("removed");
-            })
+            {% section 'main-cart-items' %}
+          })
         }
       });  
 </script>
