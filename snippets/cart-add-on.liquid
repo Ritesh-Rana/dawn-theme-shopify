@@ -59,10 +59,7 @@
             })
         }
       });
-      $(document).ajaxComplete(function() {
-        alert("ajax completed")
-        $.getJSON('/cart.js', function(cart) {
-          
-        });
+      $("cart-remove-button").click(function() {
+          $("#44979149275425").trigger("click");
       });
 </script>
