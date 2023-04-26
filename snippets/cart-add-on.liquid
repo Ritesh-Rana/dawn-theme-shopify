@@ -27,7 +27,7 @@
                 alert(carttotalint);
             })
         } 
-        else if( carttotalint < 100 && proqty >= 1 ) {
+        else if( carttotalint < 100 || proqty >= 1 ) {
           fetch('/cart/update.js', {
               method: "POST",
               headers: {
