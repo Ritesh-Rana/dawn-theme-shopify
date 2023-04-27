@@ -1,0 +1,105 @@
+<script>
+    $(document).ready(()=>{
+  var variantIds = [44979149275425, 44979149275426, 44979149275427];
+  var carttotalint = 0;
+  var proqty = {};
+  
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
+  function handleProductUpdates() {
+    console.log("carttotalint: " + carttotalint);
+    console.log("proqty: " + JSON.stringify(proqty));
+
+    for (var i = 0; i < variantIds.length; i++) {
+      var variantId = variantIds[i];
+      if (carttotalint >= 100 && (proqty[variantId] == undefined || proqty[variantId] == 0)) {
+        fetch('/cart/update.js', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            updates: {
+              [variantId]: 1
+            }
+          })
+        }).then(()=>{
+          addTdelement();
+        });
+      } else if (carttotalint < 100 || proqty[variantId] > 1) {
+        fetch('/cart/update.js', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            updates: {
+              [variantId]: 0
+            }
+          })
+        }).then(()=>{
+          $("#freeproduct").remove();
+          $("table tr[variant-id='" + variantId + "']").remove();
+          proqty[variantId]=0;
+        })
+      }
+    }
+  }
+
+  function updateCartAndHandleProductUpdates() {
+    var updateproductline = $(this).attr("data-quantity-variant-id");
+    var updateproductqty = $(this).val();
+    var shippingleft=0;
+    fetch('/cart/update.js', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        updates: {
+          [updateproductline]: updateproductqty
+        }
+      })
+    }).then(() => {
+      return new Promise((resolve, reject) => {
+        jQuery.getJSON('/cart.js', function(cart) {
+          carttotalint = cart.total_price;
+          cart.items.forEach(item => {
+            if (variantIds.includes(item.variant_id)) {
+              proqty[item.variant_id] = item.quantity;
+            }
+          });
+          resolve();
+        });
+      });
+    }).then(() => {
+      var moformat= "{{ shop.money_format }}";
+      carttotalint = formatmoney(carttotalint, moformat );
+      $('.totals__subtotal-value').text(carttotalint);
+      carttotalint = parseFloat(carttotalint.match(/(\d+\.\d+)/)[1]);
+      console.log("carttotalint: " + carttotalint);
+      console.log("proqty: " + JSON.stringify(proqty));
+      var shippingleft=75-carttotalint;
+      if(carttotalint >= 75)
+        $("#notification-free").text("You got free shipping");
+      else
+        $("#notification-free").text(shippingleft +" away from free shipping")
+      handleProductUpdates();
+    });
+  }
+
+
+</script>
