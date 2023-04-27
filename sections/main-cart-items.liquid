@@ -60,7 +60,7 @@
       carttotalfornotification = cart.total_price;
     }).then(()=>{
       if(carttotalfornotification < 75)
-        $('#notification-free').html("You are" {{ shipping_value_left | money }} "away from free shipping!<a href="/collections/all">Continue shopping</a>to add more products to your cart and receive free shipping for orders over Rs. 75.");
+        $('#notification-free').text("You are {{ shipping_value_left | money }} away from free shipping!<a href='/collections/all'>Continue shopping</a>to add more products to your cart and receive free shipping for orders over Rs. 75.");
       else
         $('#notification-free').text("You've got free shipping!");
     })
