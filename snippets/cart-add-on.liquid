@@ -96,6 +96,8 @@
   })
   });
   $('input[type=number]').change(function() {
+    carttotalint = 0;
+    proqty = 0;
     var updateproductline = $(this).attr("data-quantity-variant-id");
     var updateproductqty = $(this).val();
     
