@@ -54,7 +54,44 @@
 
   var carttotalint = 0;
   var proqty = 0;
-  
+  $(document).ready({
+    jQuery.getJSON('/cart.js', function(cart) {
+      carttotalint = cart.total_price;
+      cart.items.forEach(item => {
+        if (item.variant_id == 44979149275425) {
+          proqty = item.quantity;
+        }
+      });
+    }).then(()=>{
+  if (carttotalint >= 100 && proqty == 0) {
+    fetch('/cart/update.js', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        updates: {
+          44979149275425: 1
+        }
+      })
+    });
+  } else if (carttotalint < 100 || proqty > 1) {
+    fetch('/cart/update.js', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        updates: {
+          44979149275425: 0
+        }
+      })
+    }).then(()=>{
+      proqty=0;
+    })
+  }
+  })
+  });
   $('input[type=number]').change(function() {
     var updateproductline = $(this).attr("data-quantity-variant-id");
     var updateproductqty = $(this).val();
