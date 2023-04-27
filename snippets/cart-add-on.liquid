@@ -29,7 +29,7 @@
 
           jQuery.getJSON('/cart.js', function(cart) {
             carttotalint = cart.total_price;
-            cart.items.forEach(items=>{
+            cart.items.forEach(item=>{
               if(item.variant_id){
                 proqty = item.quantity;
                 alert(JSON.stringify(item));
