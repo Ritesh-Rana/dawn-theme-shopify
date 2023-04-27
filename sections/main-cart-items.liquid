@@ -58,8 +58,11 @@
   $('input[type=number]').change(function() {
     jQuery.getJSON('/cart.js', function(cart) {
       carttotalfornotification = cart.total_price;
+      var moformat= "{{ shop.money_format }}";
+      carttotalfornotification=formatmoney(carttotalfornotification, moformat );
       carttotalfornotification = parseFloat(carttotalfornotification.match(/(\d+\.\d+)/)[1]);
     }).then(()=>{
+      alert(carttotalfornotification);
       if(carttotalfornotification < 75)
         $('#notification-free').text("You are {{ shipping_value_left | money }} away from free shipping!<a href='/collections/all'>Continue shopping</a>to add more products to your cart and receive free shipping for orders over Rs. 75.");
       else
