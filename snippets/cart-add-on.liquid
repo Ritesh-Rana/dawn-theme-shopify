@@ -84,6 +84,7 @@
     }).then(() => {
       var moformat= "{{ shop.money_format }}";
       carttotalint = formatmoney(carttotalint, moformat );
+      carttotalint = parseFloat(carttotalint.match(/(\d+\.\d+)/)[1]);
       console.log("carttotalint: " + carttotalint);
       console.log("proqty: " + proqty);
       if (carttotalint >= 100 && proqty == 0) {
