@@ -54,7 +54,7 @@
 
   var carttotalint = 0;
   var proqty = 0;
-  $(document).ready({
+  $(document).ready(()=>{
     jQuery.getJSON('/cart.js', function(cart) {
       carttotalint = cart.total_price;
       cart.items.forEach(item => {
