@@ -331,11 +331,13 @@
           {%- endif -%}
         </div>
       </div>
+      {% if card_product.price!= 0.00 %}
         <button class="ajax-add-to-cart product-form__submit button button--full-width button--secondary" 
                 id="{{ card_product.selected_or_first_available_variant.id }}"
         >
                 Add To cart Ajax
           </button>
+        {% endif %}
     </div>
   </div>
 {%- else -%}
