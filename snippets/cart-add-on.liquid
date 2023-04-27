@@ -52,9 +52,10 @@
   return formatString.replace(placeholderRegex, value);
 };
 
-  var carttotalint = 0;
-  var proqty = 0;
+  
   $(document).ready(()=>{
+    var carttotalint = 0;
+    var proqty = 0;
     jQuery.getJSON('/cart.js', function(cart) {
       carttotalint = cart.total_price;
       cart.items.forEach(item => {
@@ -97,8 +98,8 @@
   })
   });
   $('input[type=number]').change(function() {
-    carttotalint = 0;
-    proqty = 0;
+    var carttotalint = 0;
+    var proqty = 0;
     var updateproductline = $(this).attr("data-quantity-variant-id");
     var updateproductqty = $(this).val();
     var shippingleft=0;
