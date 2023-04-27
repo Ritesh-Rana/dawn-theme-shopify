@@ -26,7 +26,7 @@
         var carttotalint= carttotal.replace(',','');
             carttotalint= Number(carttotalint),
             proqty = {{ proqty }};
-        console.log(res);
+        console.log(res.cart.item_count);
       console.log("carttotalint : "+carttotalint);
       console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
