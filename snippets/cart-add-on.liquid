@@ -8,6 +8,9 @@
   {% endfor %}
   {% assign free_gift_over_price_30 = 100 %}
   {% assign variant_id = '44979149275425' %}
+var  carttotalint= 0;
+var  proqty = 0;
+
   $('input[type=number]').change(function() {
     var updateproductline = $(this).attr("data-quantity-variant-id"),
       updateproductqty = $(this).val();
@@ -22,20 +25,14 @@
         { updates : { [updateproductline] : updateproductqty } }
       )
     }).then(()=>{
-          var carttotal = "{{ cart.total_price | money_without_currency }}";
-          var carttotalint= carttotal.replace(',','');
-              carttotalint= Number(carttotalint),
-              proqty = {{ proqty }};
-
           jQuery.getJSON('/cart.js', function(cart) {
-            carttotalint = cart.total_price;
+            this.carttotalint = cart.total_price;
             cart.items.forEach(item=>{
               if(item.variant_id == 44979149275425){
-                proqty = item.quantity;
-                alert(JSON.stringify(item));
+                this.proqty = item.quantity;
               } 
             })
-          });
+          }).then(()=>{
       console.log("carttotalint : "+carttotalint);
       console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
@@ -64,6 +61,7 @@
               })
           })
         }
+    })
     })
   })     
 </script>
