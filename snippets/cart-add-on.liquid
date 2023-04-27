@@ -22,13 +22,20 @@
         { updates : { [updateproductline] : updateproductqty } }
       )
     }).then(()=>{
+          var carttotal = "{{ cart.total_price | money_without_currency }}";
+          var carttotalint= carttotal.replace(',','');
+              carttotalint= Number(carttotalint),
+              proqty = {{ proqty }};
+
           jQuery.getJSON('/cart.js', function(cart) {
-            alert('There are now ' + cart.item_count + ' items in the cart.');
+            carttotalint = cart.total_price;
+            cart.items.forEach(items=>{
+              if(item.variant_id){
+                proqty = item.quantity;
+                alert(JSON.stringify(item));
+              } 
+            })
           });
-    var carttotal = "{{ cart.total_price | money_without_currency }}";
-        var carttotalint= carttotal.replace(',','');
-            carttotalint= Number(carttotalint),
-            proqty = {{ proqty }};
       console.log("carttotalint : "+carttotalint);
       console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
