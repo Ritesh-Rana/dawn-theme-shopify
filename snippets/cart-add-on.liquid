@@ -130,6 +130,10 @@
       carttotalint = parseFloat(carttotalint.match(/(\d+\.\d+)/)[1]);
       console.log("carttotalint: " + carttotalint);
       console.log("proqty: " + proqty);
+      if(carttotalint >= 75)
+        $("#notification-free").text("You got free shipping");
+      else
+        $("#notification-free").text("{{ shipping_value_left | money }} away from free shipping")
       if (carttotalint >= 100 && proqty == 0) {
         fetch('/cart/update.js', {
           method: "POST",
