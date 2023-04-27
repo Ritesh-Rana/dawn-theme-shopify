@@ -64,6 +64,9 @@
         }
       });
     }).then(()=>{
+      console.log("carttotalint: " + carttotalint);
+      console.log("prodqty: " + proqty);
+      
   if (carttotalint >= 100 && proqty == 0) {
     fetch('/cart/update.js', {
       method: "POST",
