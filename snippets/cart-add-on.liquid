@@ -8,7 +8,6 @@
   {% endfor %}
   {% assign free_gift_over_price_30 = 100 %}
   {% assign variant_id = '44979149275425' %}
-  alert({{ shop.money_format }});
   function formatmoney(cents, format) {
   if (typeof cents == 'string') { cents = cents.replace('.',''); }
   var value = '';
@@ -83,7 +82,7 @@
         });
       });
     }).then(() => {
-      var moformat= {{ shop.money_format }};
+      var moformat= "{{ shop.money_format }}";
       carttotalint = formatmoney(carttotalint, moformat );
       console.log("carttotalint: " + carttotalint);
       console.log("proqty: " + proqty);
