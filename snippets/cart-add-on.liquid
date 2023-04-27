@@ -8,60 +8,64 @@
   {% endfor %}
   {% assign free_gift_over_price_30 = 100 %}
   {% assign variant_id = '44979149275425' %}
-var  carttotalint= 0;
-var  proqty = 0;
-
+  var carttotalint = 0;
+  var proqty = 0;
+  
   $('input[type=number]').change(function() {
-    var updateproductline = $(this).attr("data-quantity-variant-id"),
-      updateproductqty = $(this).val();
-      console.log("updateproductline : "+updateproductline);
-      console.log("updateproductqty : "+updateproductqty);
+    var updateproductline = $(this).attr("data-quantity-variant-id");
+    var updateproductqty = $(this).val();
+    
     fetch('/cart/update.js', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(
-        { updates : { [updateproductline] : updateproductqty } }
-      )
-    }).then(()=>{
-          jQuery.getJSON('/cart.js', function(cart) {
-            this.carttotalint = cart.total_price;
-            cart.items.forEach(item=>{
-              if(item.variant_id == 44979149275425){
-                this.proqty = item.quantity;
-              } 
-            })
-          }).then(()=>{
-      console.log("carttotalint : "+carttotalint);
-      console.log("proqty : "+proqty);
-        if ( carttotalint >= 100 && proqty == 0) {
-          fetch('/cart/update.js', {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                updates: {
-                  44979149275425: 1
-                }
-            })
-        });
-        } 
-        else if( carttotalint < 100 || proqty > 1 ) {
-          fetch('/cart/update.js', {
-              method: "POST",
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                  updates: {
-                    44979149275425: 0
-                  }
-              })
-          })
+      body: JSON.stringify({
+        updates: {
+          [updateproductline]: updateproductqty
         }
-    })
-    })
-  })     
+      })
+    }).then(() => {
+      return new Promise((resolve, reject) => {
+        jQuery.getJSON('/cart.js', function(cart) {
+          carttotalint = cart.total_price;
+          cart.items.forEach(item => {
+            if (item.variant_id == 44979149275425) {
+              proqty = item.quantity;
+            }
+          });
+          resolve();
+        });
+      });
+    }).then(() => {
+      console.log("carttotalint: " + carttotalint);
+      console.log("proqty: " + proqty);
+      if (carttotalint >= 100 && proqty == 0) {
+        fetch('/cart/update.js', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            updates: {
+              44979149275425: 1
+            }
+          })
+        });
+      } else if (carttotalint < 100 || proqty > 1) {
+        fetch('/cart/update.js', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            updates: {
+              44979149275425: 0
+            }
+          })
+        })
+      }
+    });
+  });
+  
 </script>
