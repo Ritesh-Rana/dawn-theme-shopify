@@ -54,7 +54,13 @@
   {% assign shipping_value_left = shipping_value | minus: cart_total %}
   {% if cart.item_count > 0 %}
   <p class="shipping-savings-message" id="notification-free">
-    You are {{ shipping_value_left | money }} away from free shipping!<a href='/collections/all'>Continue shopping</a>to add more products to your cart and receive free shipping for orders over Rs. 75.
+    {% if shipping_value_left > 0 %}
+    You are {{ shipping_value_left | money }} away from free shipping!
+    <a href="/collections/all">Continue shopping</a>
+    to add more products to your cart and receive free shipping for orders over Rs. 75.
+  {% else %}
+    You've got free shipping!
+  {% endif %}
   </p>
 {% endif %}
   <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
