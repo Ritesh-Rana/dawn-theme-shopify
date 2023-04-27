@@ -53,89 +53,100 @@
 };
 
   
-$(document).ready(() => {
-  let carttotalint = 0;
-  let proqty = 0;
-  let debounceTimer;
+// define a debounce function
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}
 
-  function updateCart() {
-    fetch('/cart/update.js', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        updates: {
-          44979149275425: proqty === 0 && carttotalint >= 100 ? 1 : 0
-        }
-      })
-    }).then(() => {
-      if (proqty === 0 && carttotalint >= 100) {
+// define the function to be debounced
+function updateCart() {
+  var carttotalint = 0;
+  var proqty = 0;
+  var updateproductline = $(this).attr("data-quantity-variant-id");
+  var updateproductqty = $(this).val();
+  var shippingleft=0;
+  fetch('/cart/update.js', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      updates: {
+        [updateproductline]: updateproductqty
+      }
+    })
+  }).then(() => {
+    return new Promise((resolve, reject) => {
+      jQuery.getJSON('/cart.js', function(cart) {
+        carttotalint = cart.total_price;
+        cart.items.forEach(item => {
+          if (item.variant_id == 44979149275425) {
+            proqty = item.quantity;
+          }
+        });
+        resolve();
+      });
+    });
+  }).then(() => {
+    var moformat= "{{ shop.money_format }}";
+    carttotalint = formatmoney(carttotalint, moformat );
+    $('.totals__subtotal-value').text(carttotalint);
+    carttotalint = parseFloat(carttotalint.match(/(\d+\.\d+)/)[1]);
+    console.log("carttotalint: " + carttotalint);
+    console.log("proqty: " + proqty);
+    var shippingleft=75-carttotalint;
+    if(carttotalint >= 75)
+      $("#notification-free").text("You got free shipping");
+    else
+      $("#notification-free").text(shippingleft +" away from free shipping")
+    if (carttotalint >= 100 && proqty == 0) {
+      fetch('/cart/update.js', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          updates: {
+            44979149275425: 1
+          }
+        })
+      }).then(()=>{
         addTdelement();
-      } else {
+      });
+    } else if (carttotalint < 100 || proqty > 1) {
+      fetch('/cart/update.js', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          updates: {
+            44979149275425: 0
+          }
+        })
+      }).then(()=>{
         $("#freeproduct").remove();
         $("table tr[variant-id='44979149275425']").remove();
-        proqty = 0;
-      }
-    });
-  }
-
-  function updateCartDebounced() {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      updateCart();
-    }, 500);
-  }
-
-  function updateCartTotal() {
-    jQuery.getJSON('/cart.js', function(cart) {
-      carttotalint = parseFloat(cart.total_price);
-
-      cart.items.forEach(item => {
-        if (item.variant_id == 44979149275425) {
-          proqty = item.quantity;
-        }
-      });
-
-      var moformat = "{{ shop.money_format }}";
-      carttotalint = formatmoney(carttotalint, moformat );
-      $('.totals__subtotal-value').text(carttotalint);
-      carttotalint = parseFloat(carttotalint.match(/(\d+\.\d+)/)[1]);
-      console.log("carttotalint: " + carttotalint);
-      console.log("proqty: " + proqty);
-
-      var shippingleft = 75 - carttotalint;
-      if (carttotalint >= 75) {
-        $("#notification-free").text("You got free shipping");
-      } else {
-        $("#notification-free").text(shippingleft + " away from free shipping");
-      }
-
-      updateCartDebounced();
-    });
-  }
-
-  updateCartTotal();
-
-  $('input[type=number]').change(function() {
-    const updateproductline = $(this).attr("data-quantity-variant-id");
-    const updateproductqty = $(this).val();
-
-    fetch('/cart/update.js', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        updates: {
-          [updateproductline]: updateproductqty
-        }
+        proqty=0;
       })
-    }).then(() => {
-      updateCartTotal();
-    });
+    }
   });
-});
+}
+
+// use debounce on the change event
+$('input[type=number]').change(debounce(updateCart, 500));
+
 
   
 function addTdelement(){
