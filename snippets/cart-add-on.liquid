@@ -146,7 +146,7 @@ function updateCart() {
 
 // use debounce on the change event
 $('input[type=number]').change(debounce(updateCart, 500));
-
+$(document).ready(updateCart);
 
   
 function addTdelement(){
