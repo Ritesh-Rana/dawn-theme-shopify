@@ -83,7 +83,8 @@
         });
       });
     }).then(() => {
-      carttotalint = formatmoney(carttotalint, {{ shop.money_format }} );
+      var money_format= {{ shop.money_format }};
+      carttotalint = formatmoney(carttotalint, money_format );
       console.log("carttotalint: " + carttotalint);
       console.log("proqty: " + proqty);
       if (carttotalint >= 100 && proqty == 0) {
