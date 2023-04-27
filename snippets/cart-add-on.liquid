@@ -21,12 +21,14 @@
       body: JSON.stringify(
         { updates : { [updateproductline] : updateproductqty } }
       )
-    }).then(res=>{
+    }).then(()=>{
+          jQuery.getJSON('/cart.js', function(cart) {
+            alert('There are now ' + cart.item_count + ' items in the cart.');
+          });
     var carttotal = "{{ cart.total_price | money_without_currency }}";
         var carttotalint= carttotal.replace(',','');
             carttotalint= Number(carttotalint),
             proqty = {{ proqty }};
-        console.log(res.cart.item_count);
       console.log("carttotalint : "+carttotalint);
       console.log("proqty : "+proqty);
         if ( carttotalint >= 100 && proqty == 0) {
