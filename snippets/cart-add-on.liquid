@@ -145,6 +145,10 @@ function updateCart() {
         $("#freeproduct").remove();
         $("table tr[variant-id='44979149275425']").remove();
         proqty=0;
+        jQuery.getJSON('/cart.js', function(cart) {
+        if(cart.item_count <1)
+          hidetableandshowemptycart();
+          });
       })
     }
   });
