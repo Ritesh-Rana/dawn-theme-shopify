@@ -96,6 +96,7 @@ function updateCart() {
           }
           var moformat= "{{ shop.money_format }}";
           var itemstotal = formatmoney(item.final_line_price, moformat );
+          console.log(itemstotal);
           $('tr[variant-id='+ item.variant_id +'] td.cart-item__totals.right.medium-hide.large-up-hide').find('div.cart-item__price-wrapper').text(itemstotal);
         });
         resolve();
