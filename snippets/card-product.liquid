@@ -395,7 +395,7 @@
   $(".ajax-add-to-cart").click(function(){
     variant_id = $(this).attr("id");
     var imageSrc = $(this).closest('.card').find('.card__media img').attr('src');
-    var productName = $(this).closest('.card').find('.card__heading').text();
+    var productName = $(this).closest('.card').find('.card__heading.h5').text();
     data = {
       "id": variant_id,
       "quantity": 1
