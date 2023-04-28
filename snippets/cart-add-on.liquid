@@ -175,7 +175,8 @@ function addTdelement(){
     table.append($newRow);
 }
 function hidetableandshowemptycart(){
-  $('cart-items').hide();
+  $('cart-items').remove();
+  $('#main-cart-footer').remove();
   var html = '<cart-items class="page-width is-empty"><div class="title-wrapper-with-link"><h1 class="title title--primary">Your cart</h1><a href="/collections/all" class="underlined-link">Continue shopping</a></div><div class="cart__warnings"><h1 class="cart__empty-text">Your cart is empty</h1><a href="/collections/all" class="button">Continue shopping</a></div><form action="/cart" class="cart__contents critical-hidden" method="post" id="cart"><div class="cart__items" id="main-cart-items" data-id="template--18660247634209__cart-items"><div class="js-contents"></div></div><p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p><p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true" role="status">Loading...</p></form></cart-items>';
     $('#shopify-section-sections--18660247535905__header').append(html);
 }
