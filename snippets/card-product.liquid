@@ -392,27 +392,27 @@
   </div>
 {%- endif -%}
 <script>
-  $(".ajax-add-to-cart").click(function(){
-    variant_id = $(this).attr("id");
-    var imageSrc = $(this).closest('.card').find('.card__media img').attr('src');
-    var productName = $(this).closest('.cart-notification-product').find('.cart-notification-product__name h4').text();
-    data = {
-      "id": variant_id,
-      "quantity": 1
-    }
-
-    jQuery.ajax({
-      type: 'POST',
-      url: '/cart/add',
-      data: data,
-      dataType: 'json',
-      success: function() {
-        $("#cart-notification").addClass("active");
-        var productimage = '<div class="cart-notification-product__image global-media-settings"><img src="'+ imageSrc +'" alt="" width="70" height="70" loading="lazy"></div>';
-        var producttitle = '<div><h3 class="cart-notification-product__name h4">'+ productName +'</h3><dl></dl></div>';
-        $('#cart-notification-product').html();
-        $('#cart-notification-product').append(productimage).append(producttitle);
-      }
-    })
-  })
+  //$(".ajax-add-to-cart").click(function(){
+  //  variant_id = $(this).attr("id");
+  //  var imageSrc = $(this).closest('.card').find('.card__media img').attr('src');
+  //  var productName = $(this).closest('.cart-notification-product').find('.cart-notification-product__name h4').text();
+  //  data = {
+  //    "id": variant_id,
+  //    "quantity": 1
+  //  }
+//
+  //  jQuery.ajax({
+  //    type: 'POST',
+  //    url: '/cart/add',
+  //    data: data,
+  //    dataType: 'json',
+  //    success: function() {
+  //      $("#cart-notification").addClass("active");
+  //      var productimage = '<div class="cart-notification-product__image global-media-settings"><img src="'+ imageSrc +'" alt="" width="70" height="70" loading="lazy"></div>';
+  //      var producttitle = '<div><h3 class="cart-notification-product__name h4">'+ productName +'</h3><dl></dl></div>';
+  //      $('#cart-notification-product').html();
+  //      $('#cart-notification-product').append(productimage).append(producttitle);
+  //    }
+  //  })
+  //})
 </script>
