@@ -89,6 +89,7 @@ function updateCart() {
   }).then(() => {
     return new Promise((resolve, reject) => {
       jQuery.getJSON('/cart.js', function(cart) {
+        $('.cart-count-bubble span').text(cart.item_count);
         carttotalint = cart.total_price;
         if(cart.item_count <1)
           hidetableandshowemptycart();
@@ -128,6 +129,11 @@ function updateCart() {
           }
         })
       }).then(()=>{
+        jQuery.getJSON('/cart.js', function(cart) {
+          $('.cart-count-bubble span').text(cart.item_count);
+          if(cart.item_count <1)
+            hidetableandshowemptycart();
+        });
         addTdelement();
       });
     } else if (carttotalint < 100 || proqty > 1) {
