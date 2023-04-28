@@ -149,6 +149,7 @@
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
+                {% if product.price != 0.00 %}                  
                 <li class="grid__item" style="padding: 20px;">
                   {% render 'card-product',
                     card_product: product,
@@ -161,6 +162,7 @@
                     section_id: section.id
                   %}
                 </li>
+              {% endif %}
               {%- endfor -%}
             </ul>
 
