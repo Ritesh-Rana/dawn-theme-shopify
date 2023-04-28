@@ -70,7 +70,7 @@
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
       >
-        {%- for product in section.settings.collection.products limit: 10 -%}
+        {%- for product in section.settings.collection.products limit: 12 -%}
           {% if product.price != 0.00 %}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
