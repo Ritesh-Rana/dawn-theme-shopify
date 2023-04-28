@@ -95,7 +95,7 @@ function updateCart() {
             proqty = item.quantity;
           }
           var moformat= "{{ shop.money_format }}";
-          var itemstotal = formatmoney(item.price, moformat );
+          var itemstotal = formatmoney(item.price*item.quantity, moformat );
           $('tr[variant-id='+ item.variant_id +'] td.cart-item__totals.right.medium-hide.large-up-hide').find('div.cart-item__price-wrapper').text(itemstotal);
         });
         resolve();
