@@ -407,10 +407,10 @@
       data: data,
       dataType: 'json',
       success: function() {
+        $("#cart-notification").addClass("active");
         var productimage = '<div class="cart-notification-product__image global-media-settings"><img src="'+ imageSrc +'" alt="" width="70" height="70" loading="lazy"></div>';
         var producttitle = '<div><h3 class="cart-notification-product__name h4">'+ productName +'</h3><dl></dl></div>';
         $('#cart-notification-product').append(productinfo);
-        $("#cart-notification").addClass("active");
       }
     })
   })
