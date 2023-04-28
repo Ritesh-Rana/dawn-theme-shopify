@@ -30,7 +30,8 @@
         role="list"
       >
         {% for recommendation in recommendations.products %}
-          <li class="grid__item">
+          {% if recommendations.price != 0.00 %}
+          <li class="grid__item" style="padding: 20px;">
             {% render 'card-product',
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,
@@ -39,6 +40,7 @@
               show_rating: section.settings.show_rating
             %}
           </li>
+          {% endif %}
         {% endfor %}
       </ul>
     {% endif %}
