@@ -407,15 +407,21 @@
       data: data,
       dataType: 'json',
       success: function() {
+        var totalitemscount;
+        jQuery.getJSON('/cart.js', function(cart) {
+          totalitemscount =cart.item_count;
+        });
         $("#cart-notification").addClass("active");
         var productimage = '<div class="cart-notification-product__image global-media-settings"><img src="'+ imageSrc +'" alt="" width="70" height="70" loading="lazy"></div>';
         var producttitle = '<div><h3 class="cart-notification-product__name h4">'+ productName +'</h3><dl></dl></div>';
         $('#cart-notification-product').html('');
+        $('#cart-notification-button').text('View cart ('+ totalitemscount+')');
         $('#cart-notification-product').append(productimage).append(producttitle);
       }
     })
   });
   $('.cart-notification__close modal__close-button').click(function(){
-    $('#cart-notification-product').html('');
+    $('#cart-notification-product').html('');\
+    $('#cart-notification-button').text('View cart');
   })
 </script>
