@@ -13,13 +13,15 @@
     console.log("width :  " + isMobile);
     let iframe = document.getElementById("framevideo");
 
-    if (isMobile <= 1024) {
+    if (isMobile <= 800) {
       iframe.src = "https://www.youtube.com/embed/27UGBp5qkZY?playlist=27UGBp5qkZY&loop=1&autoplay=1&controls=1&showinfo=0&mute=1"
     } else {
       iframe.src = "https://www.youtube.com/embed/QTtXmARDG-Y?playlist=QTtXmARDG-Y&loop=1&autoplay=1&controls=1&showinfo=0&mute=1"
     }
   }
-  check();
+  $(document).ready(function() {
+    check();
+  })
   $(window).resize(function() {
     check();
   });
