@@ -9,11 +9,11 @@
 
 <script>
   function check() {
-    var isMobile = (!!navigator.maxTouchPoints);
-    console.log(isMobile);
+    var isMobile = 1024;
+    console.log("width :  " + isMobile);
     let iframe = document.getElementById("framevideo");
 
-    if (isMobile) {
+    if (isMobile <= 1024) {
       iframe.src = "https://www.youtube.com/embed/27UGBp5qkZY?playlist=27UGBp5qkZY&loop=1&autoplay=1&controls=1&showinfo=0&mute=1"
     } else {
       iframe.src = "https://www.youtube.com/embed/QTtXmARDG-Y?playlist=QTtXmARDG-Y&loop=1&autoplay=1&controls=1&showinfo=0&mute=1"
