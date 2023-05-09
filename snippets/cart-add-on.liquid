@@ -76,7 +76,6 @@ function updateCart() {
   var updateproductline = $(this).attr("data-quantity-variant-id");
   var updateproductqty = $(this).val();
   var shippingleft=0;
-  if(updateproductline!=undefined && updateproductqty!=undefined){
   fetch('/cart/update.js', {
     method: "POST",
     headers: {
@@ -161,7 +160,7 @@ function updateCart() {
     }
   });
 }
-}
+
 // use debounce on the change event
 $('input[type=number]').change(debounce(updateCart, 500));
 $(document).ready(updateCart);
