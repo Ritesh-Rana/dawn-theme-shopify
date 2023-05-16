@@ -1,9 +1,9 @@
 {% if product.price == 0.00 %}
-    {% script %}
+    <script>
       setTimeout(function(){
         window.location.href="/";
       },1000);
-    {% script %}
+    </script>
 {% endif %}
 <section
   id="MainProduct-{{ section.id }}"
