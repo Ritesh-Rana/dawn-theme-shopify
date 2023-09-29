@@ -584,7 +584,11 @@
     }
   </script>
 </section>
-
+<div>
+  {% for product in collection['tv'].products %}
+    {{ product.title }}
+    {% endfor %}
+</div>
 {% schema %}
 {
   "name": "t:sections.main-product.name",
